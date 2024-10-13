@@ -63,13 +63,14 @@ namespace VNTextPatch.Shared.Scripts
                 {
                     if (pendingEntry != null)
                     {
+                        pendingEntry.Original = str.Text;
                         pendingEntry.Message = str.Text;
                         entries.Add(pendingEntry);
                         pendingEntry = null;
                     }
                     else
                     {
-                        entries.Add(new Entry { Message = str.Text });
+                        entries.Add(new Entry { Original = str.Text, Message = str.Text });
                     }
                 }
             }
@@ -91,6 +92,13 @@ namespace VNTextPatch.Shared.Scripts
 
             [JsonProperty("names", NullValueHandling = NullValueHandling.Ignore)]
             public List<string> Names
+            {
+                get;
+                set;
+            }
+
+            [JsonProperty("original")]
+            public string Original
             {
                 get;
                 set;
